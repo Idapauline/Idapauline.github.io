@@ -1,30 +1,285 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ida Pauline | Data Analyst Portfolio</title>
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ida Pauline | Data Analyst Portfolio</title>
+  <meta name="description" content="Aspiring data analyst building Power BI dashboards and data models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070727;
+      --bg2: #0D0D38;
+      --text: #FFFFFF;
+      --gold: #FFC21A;
+      --line: #2A2A5E;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 80px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Montserrat, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    a { color: var(--text); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .gold { color: var(--gold); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    <header>
-      <h1>Ida Pauline</h1>
-      <p>Aspiring Data Analyst | Power BI | SQL</p>
-    </header>
+    /* top menu */
+    .topbar { position: sticky; top: 0; z-index: 10; background: var(--bg); }
+    .topbar nav { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px 28px; padding: 18px 24px; max-width: 1100px; margin: 0 auto; }
+    .topbar a { font-weight: 800; text-decoration: none; }
+    .topbar a:hover { color: var(--gold); }
 
-    <section>
-      <h2>About</h2>
+    section { padding: 72px 0; }
+    .pill {
+      display: inline-block;
+      border: 3px solid var(--gold);
+      border-radius: 14px;
+      padding: 4px 20px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+    .pill b { color: var(--gold); font-weight: 600; }
+
+    /* home */
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; min-height: 78vh; }
+    .hero h1 { font-size: clamp(2.6rem, 8vw, 5.2rem); line-height: 1.02; margin: 0 0 24px; font-weight: 600; letter-spacing: 0.01em; }
+    .hero h1 .gold { font-weight: 800; }
+    .hero p { font-size: 1.5rem; margin: 0; max-width: 20ch; }
+    .photo {
+      width: min(100%, 380px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 8px solid #fff;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: var(--bg);
+      font-size: 5rem;
+      font-weight: 800;
+    }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    /* about */
+    .about { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; }
+    .about h2 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; margin: 0; line-height: 1.15; }
+    .about p { margin: 0 0 24px; }
+    .btn {
+      display: inline-block;
+      border: 3px solid var(--text);
+      border-radius: 14px;
+      padding: 8px 22px;
+      margin: 0 10px 12px 0;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn:hover { border-color: var(--gold); color: var(--gold); }
+    .btn.gold-border { border-color: var(--gold); }
+
+    /* skills */
+    .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .cols > div { padding: 0 24px; border-left: 1px solid var(--line); }
+    .cols > div:first-child { padding-left: 0; border-left: 0; }
+    .cols h3 { font-size: 1.4rem; font-weight: 800; color: var(--gold); line-height: 1.25; margin: 0 0 20px; }
+    .cols ul { list-style: none; padding: 0; margin: 0; }
+    .cols li { padding: 4px 0; }
+
+    /* background */
+    .bg2 { background: var(--bg2); }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .two h3 { font-size: 2rem; font-weight: 800; color: var(--gold); margin: 0 0 20px; }
+    .item { margin-bottom: 28px; }
+    .item strong { display: block; color: var(--gold); font-size: 1.15rem; }
+    .item span { font-size: 0.95rem; }
+
+    /* projects */
+    .project { margin-bottom: 72px; }
+    .project h3 { display: flex; gap: 20px; align-items: baseline; font-size: clamp(1.4rem, 4vw, 2.4rem); font-weight: 800; color: var(--gold); text-transform: uppercase; line-height: 1.2; margin: 0 0 24px; }
+    .project h3 .num { color: var(--text); font-size: clamp(3rem, 9vw, 6rem); line-height: 1; }
+    .shot { background: var(--bg2); border: 1px solid var(--line); min-height: 200px; display: grid; place-items: center; color: #8C8CC0; overflow: hidden; margin-bottom: 20px; }
+    .shot img { width: 100%; display: block; }
+    .project p { max-width: 70ch; }
+
+    /* contact */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .contact h2 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 600; line-height: 1.2; margin: 0; }
+    .contact dl { margin: 0; }
+    .contact dt { color: var(--gold); font-weight: 600; margin-top: 20px; }
+    .contact dd { margin: 0; }
+
+    footer { text-align: center; padding: 28px 24px; color: #8C8CC0; font-size: 0.9rem; border-top: 1px solid var(--line); }
+
+    @media (max-width: 800px) {
+      .hero, .about, .two, .contact { grid-template-columns: 1fr; }
+      .cols { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+      .cols > div:nth-child(3) { padding-left: 0; border-left: 0; }
+      .topbar nav { justify-content: center; }
+      section { padding: 48px 0; }
+    }
+    @media (max-width: 480px) {
+      .cols { grid-template-columns: 1fr; }
+      .cols > div { padding-left: 0; border-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#background">Background</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="home">
+      <div class="wrap hero">
+        <div>
+          <span class="pill"><b>Data Analyst</b> Portfolio</span>
+          <h1>IDA<br><span class="gold">PAULINE</span></h1>
+          <p>I turn raw data into <span class="gold">clear dashboards</span></p>
+        </div>
+        <!-- CHANGE: put your photo in the images folder as ida.jpg. Until then the circle shows your initials. -->
+        <div class="photo" aria-label="Photo of Ida Pauline">IP<img src="images/ida.jpg" alt="Ida Pauline" onerror="this.style.display='none'"></div>
+      </div>
     </section>
 
-    <section>
-      <h2>Projects</h2>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <span class="pill"><b>About</b> Me</span>
+        <div class="about">
+          <h2>Hello,<br>I’m <span class="gold">Ida!</span></h2>
+          <div>
+            <p>I’m learning data analytics hands-on. I work with <span class="gold">Power BI, DAX, Power Query and SQL</span>, and I enjoy the step where messy tables become a clean model that a dashboard can sit on.</p>
+            <p>I’m looking for <span class="gold">entry-level analyst roles, internships and small freelance Power BI projects</span>.</p>
+            <!-- CHANGE: replace each link with your own -->
+            <a class="btn" href="https://www.linkedin.com/in/your-name">LinkedIn</a>
+            <a class="btn" href="https://wa.me/91XXXXXXXXXX">WhatsApp</a>
+            <a class="btn" href="mailto:you@example.com">Email</a>
+            <a class="btn gold-border" href="#projects">Projects</a>
+            <!-- When you have a CV: upload cv.pdf to the repository and add
+            <a class="btn gold-border" href="cv.pdf">Download CV</a> -->
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Skills</h2>
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="wrap">
+        <span class="pill"><b>Technical</b> Skills</span>
+        <div class="cols">
+          <div>
+            <h3>Programming<br>Languages</h3>
+            <ul><li>SQL</li><li>Python</li></ul>
+          </div>
+          <div>
+            <h3>Data Preparation<br>Tools</h3>
+            <ul><li>Power Query</li><li>Microsoft Excel</li></ul>
+          </div>
+          <div>
+            <h3>Data Visualization<br>Tools</h3>
+            <ul><li>Power BI</li></ul>
+          </div>
+          <div>
+            <h3>Data Analytics<br>Methods</h3>
+            <ul><li>Data modeling</li><li>DAX measures</li><li>Data cleaning</li></ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contact</h2>
+    <!-- BACKGROUND -->
+    <section id="background" class="bg2">
+      <div class="wrap">
+        <span class="pill"><b>Education &amp; Learning</b> Background</span>
+        <div class="two">
+          <div>
+            <h3>EDUCATION</h3>
+            <!-- CHANGE: fill in your own details, copy the block for more entries -->
+            <div class="item">
+              <strong>[Your college or university]</strong>
+              <span>[Your degree], [year]</span>
+            </div>
+          </div>
+          <div>
+            <h3>LEARNING</h3>
+            <!-- CHANGE: add your course or training names -->
+            <div class="item">
+              <strong>[Your data analytics course]</strong>
+              <span>Power BI, data modeling, SQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-  </body>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="wrap">
+        <span class="pill"><b>Notable</b> Projects</span>
+
+        <article class="project">
+          <h3><span class="num">01</span> Food delivery data model</h3>
+          <div class="shot">
+            <!-- CHANGE: upload your screenshot as images/food-delivery-model.png -->
+            <img src="images/food-delivery-model.png" alt="Food delivery data model diagram" onerror="this.style.display='none'">
+          </div>
+          <p>A data model for a food delivery business showing how <span class="gold">customers, restaurants, dishes and orders</span> connect, so orders can be analysed by customer, restaurant and dish.</p>
+          <p><strong>Tools:</strong> Power BI, data modeling, DAX</p>
+        </article>
+
+        <article class="project">
+          <h3><span class="num">02</span> City transport operations dashboard</h3>
+          <div class="shot">
+            <img src="images/city-transport-dashboard.png" alt="City transport operations dashboard" onerror="this.style.display='none'">
+          </div>
+          <p><strong>In progress.</strong> A Power BI dashboard for <span class="gold">city transport operations</span>, built from a dataset and a written requirements sheet.</p>
+          <p><strong>Tools:</strong> Power BI, DAX, Power Query</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bg2">
+      <div class="wrap">
+        <span class="pill"><b>Contact</b> Info</span>
+        <div class="contact">
+          <dl>
+            <dt>Phone (WhatsApp)</dt>
+            <dd><a href="https://wa.me/91XXXXXXXXXX">+91 XXXXX XXXXX</a></dd>
+            <dt>E-mail</dt>
+            <dd><a href="mailto:you@example.com">you@example.com</a></dd>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/your-name">linkedin.com/in/your-name</a></dd>
+          </dl>
+          <h2>Got data that needs <span class="gold">sorting out?</span> Message me.</h2>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>© 2026 Ida Pauline</footer>
+
+</body>
 </html>
